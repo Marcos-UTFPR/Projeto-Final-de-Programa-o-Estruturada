@@ -50,9 +50,9 @@ int main(void) {
   printf("\n Preço do litro da gasolina = R$ %.2f\n Tamanho máximo da fila = %d"CYN"\n\n *Aperte Enter para continuar\n"WHT,precogasolina,tamanhofila); //Exibe os dois valores lido anteriormente
   getchar();
   getchar();
-  while (opcaomenu != 5){     //Laço de repetição do Menu Principal
+  while (opcaomenu != 6){     //Laço de repetição do Menu Principal
     system("clear");         //Limpa a tela toda vez que o laço recomeça
-    printf(BLU"\n-----------------MENU PRINCIPAL------------------------"WHT"\n\n Selecione uma das seguintes opções:\n1-Adicionar um carro na fila\n2-Abastecimento\n3-Exibir carros na fila de espera\n4-Relatórios\n5-Encerrar\n");
+    printf(BLU"\n-----------------MENU PRINCIPAL------------------------"WHT"\n\n Selecione uma das seguintes opções:\n1-Adicionar um carro na fila\n2-Abastecimento\n3-Exibir carros na fila de espera\n4-Remover Primeiro Carro da fila\n5-Relatórios\n6-Encerrar\n");
     scanf("%d",&opcaomenu);
     switch (opcaomenu){
       case 1: //Adicionar um carro na fila
@@ -118,7 +118,19 @@ int main(void) {
                   printf(BLU"\n -"WHT"Carro %d\t\tPlaca do Carro: %d\t\tModelo: %s\t\tCor: %s",i+1,filaAtual[i].placa,filaAtual[i].modelo,filaAtual[i].cor);
                   }
         break;
-      case 4: //Relatórios
+      case 4: //Remover Primeiro Carro da fila
+        if (fila != 0){
+          for(int i = 0;i < fila;i++){ //Ordenação do vetor que registra a fila atual
+            filaAtual[i] = filaAtual[i+1];
+          }
+          fila--;
+          printf(RED"\n *O primeiro carro da fila foi embora!"WHT);  
+        }
+        else {
+          printf(RED"\nNão há nenhum carro na fila atualmente\n"WHT);
+        }
+        break;
+      case 5: //Relatórios
         while (opcaorelatorio != 6){ //Laço de repetição do submenu Relatórios
           system("clear");
           printf(BLU"\n-----------------MENU RELATÓRIOS------------------------"WHT"\n\n Selecione um dos seguintes relatórios:\n1-Quantidade de litros vendidos\n2-Valor total arrecadado\n3-Quantidade de carros atendidos\n4-Quantidade de combustível restante no tanque\n5-Gerar arquivo para impressão\n6-Voltar ao menu anterior\n");
@@ -169,7 +181,7 @@ int main(void) {
          }
         opcaorelatorio = 0;
         break;
-      case 5: //Encerrar
+      case 6: //Encerrar
         printf(CYN"\n\t\t\t-Programa encerrado-");
         break;
       default: printf(RED"\n Comando incorreto-Escolha uma das opções informadas\n");
