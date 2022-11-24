@@ -132,7 +132,7 @@ int main(void) {
         break;
       case 5: //Relatórios
         while (opcaorelatorio != 6){ //Laço de repetição do submenu Relatórios
-          system("clear");
+          system("clear"); //É um comando de Linux então alguns compiladores não lê
           printf(BLU"\n-----------------MENU RELATÓRIOS------------------------"WHT"\n\n Selecione um dos seguintes relatórios:\n1-Quantidade de litros vendidos\n2-Valor total arrecadado\n3-Quantidade de carros atendidos\n4-Quantidade de combustível restante no tanque\n5-Gerar arquivo para impressão\n6-Voltar ao menu anterior\n");
           scanf("%d",&opcaorelatorio);
             switch (opcaorelatorio){
