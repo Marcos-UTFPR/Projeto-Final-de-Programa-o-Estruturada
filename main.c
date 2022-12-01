@@ -101,8 +101,13 @@ int main(void) {
           lucro = lucro + (litrosabastecer * precogasolina);
           carrosatendidos++;
           if (combustivel == 0){
-            printf(RED"\n\n\t Não há mais combustível no tanque\n\t Os carros que estavam esperando na fila foram embora"WHT);
+            if (fila != 0){
+              printf(RED"\n\n\t Não há mais combustível no tanque\n\t Os carros que estavam esperando na fila foram embora"WHT);
             fila = 0; //Zera a fila quando acaba o combustível
+              }
+            else {
+              printf(RED"\n\n\t Não há mais combustível no tanque\n\t Não é possível adicionar mais nenhum carro na fila"WHT);
+            }
             free (filaAtual); //Apaga o vetor que registra os carros atualmente na fila
             filaAtual = NULL;
           }    
