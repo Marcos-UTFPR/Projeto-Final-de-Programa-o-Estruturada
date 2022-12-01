@@ -37,6 +37,7 @@ int main(void) {
   carrosAtendidos1 = (struct TCarro*)calloc(0,sizeof(struct TCarro)); //Alocação dinâmica
   int contRelatorio = 0; //Registra quantos relatórios completos foram emitidos
   char nomeArquivo[20]; //Nome de arquivo do relatório
+  FILE *arquivo; //Variável usada na geração do arquivo .txt
   
   printf(" -Autor do Programa: Marcos Vinícius Ribeiro da Silva\n\n -Função do Programa: simular o funcionamento de um posto d ve \ncombustível de pequeno porte, com uma bomba apenas e que \nsó trabalha com um combustível, gasolina comum, tendo apenas \n200 litros no tanque no início.\n\n\nInforme o preço do litro da gasolina comum (em reais)\n"GRN"(Atenção! Por favor, digite o valor usando ponto e não vírgula!): "WHT);
   precogasolina = Validacao (); //Inicia a subrotina de Validação para validar o valor informado, garantindo que o valor não seja negativo ou zero
@@ -64,7 +65,7 @@ int main(void) {
             printf("\nInforme o número da placa do carro: ");
             scanf("%d",&filaAtual[fila].placa);
             
-            flush_in();
+            flush_in(); //Tem que limpar o buffer toda vez que usa scanf antes de fgets
             printf("\nInforme o modelo do carro: ");
             fgets(filaAtual[fila].modelo,20,stdin);
             filaAtual[fila].modelo[strcspn(filaAtual[fila].modelo,"\n")]=0;
@@ -160,9 +161,9 @@ int main(void) {
               case 5:
                 printf(GRN"\n  *Gerando relatório..."WHT);
                 contRelatorio++;
-                FILE *arquivo;
+                
                 sprintf(nomeArquivo,"relatorio_%d.txt",contRelatorio); 
-                arquivo = fopen(nomeArquivo, "w");
+                arquivo = fopen(nomeArquivo, "w"); //Parte da geração do arquivo .txt
                 if (arquivo == NULL){
                   printf("\n\n\n"RED"   Erro de arquivo"WHT);
                   exit(0);
